@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+
+    api project(':core')
+
+    testImplementation "junit:junit:4.13-beta-2"
+    testImplementation 'org.mockito:mockito-core:2.27.0'
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.5.0-M1"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.5.0-M1"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.5.0-M1"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.5.0-M1"
+
+    //dagger
+    kaptTest "com.google.dagger:dagger-compiler:2.23.1"
+    kaptTest "com.google.dagger:dagger-android-processor:2.23.1"
+
+    testImplementation 'com.github.fabioCollini.daggermock:daggermock:0.8.5'
+    testImplementation 'com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.5'
+
+
+}

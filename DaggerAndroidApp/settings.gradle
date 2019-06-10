@@ -1,0 +1,2 @@
+include ':app', ':tests', ':core'
+rootProject.name='DaggerAndroidApp'
